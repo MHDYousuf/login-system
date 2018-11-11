@@ -17,6 +17,29 @@ require "header.php";
 				<section>
 					<div class="row col-sm-4 col-sm-offset-4">
 						<h3>Sign Up</h3>
+						<?php
+							if(isset($_GET['error'])){
+								if($_GET['error'] == "emptyfields"){
+									echo '<p style="color:red";>Fill in all fields</p>';
+								}elseif($_GET["error"] == "invaliduidmail"){
+									echo '<p style="color:red";>Invalid Username and E-mail</p>';
+								}elseif($_GET["error"] == "invaliduid"){
+									echo '<p style="color:red";>Invalid Username</p>';
+								}elseif($_GET["error"] == "invalidmail"){
+									echo '<p style="color:red";>Invalid E-mail</p>';
+								}elseif($_GET["error"] == "passwordcheck"){
+									echo '<p style="color:red";>Your password do not match</p>';
+								}elseif($_GET["error"] == "usertaken"){
+									echo '<p style="color:red";>username is already taken</p>';
+								}
+
+							}
+							elseif(isset($_GET['signup'])){
+								if($_GET["signup"] == "success"){
+									echo  '<p style="color:green";>Signup Successfully</p>';
+								}
+							}
+						?>
 						<form class="form-group" action="includes/signup.inc.php" method="post">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -34,7 +57,7 @@ require "header.php";
 								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
 								<input type="password"class="form-control" name="pwd-repeat" placeholder="Confirm Password">
 							</div>
-							<button type="submit" class="btn btn-primary" name="signup-submit">SignUp</button>
+							<button type="submit" class="btn btn-primary" name="signup-submit">Sign Up</button>
 						</form>
 					</div>
 				</section>

@@ -13,8 +13,15 @@ require "header.php";
 		<main>
 			<div class="container text-center" style="background-color: #ccc">
 				<div class="row" style="padding:15px">
-					<p>You are Logged in</p>
-					<p >You are Logged out</p>
+					<?php
+						if(isset($_SESSION['userid'])){
+							echo '<p>You are Logged in</p>';
+						}
+						else{
+							echo '<p >You are Logged out</p>';
+						}
+
+					?>
 				</div>
 			</div>
 		</main>

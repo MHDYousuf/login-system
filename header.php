@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,19 +30,26 @@
 							--><li><a href="#">Contact</a></li>
 						</ul>
 						<div class="nav navbar-nav navbar-right">
-							<form class="navbar-form navbar-left" action="includes/login.inc.php" method="post">
-								<div class="form-group">
-									<input type="text" class="form-control" name="mailuid" placeholder="Username/Email">
-									<input type="password" class="form-control" name="pwd" placeholder="Password">
-								</div>
-								<button type="submit" class="btn btn-primary" name="login-submit">Log In</button>
-							</form>
-							<ul class="nav navbar-nav">
-								<li><a href="signup.php">Signup</a></li>
-							</ul>
-							<form class="navbar-form navbar-right" action="includes/logout.inc.php" method="post">
-								<button type="submit" class="btn btn-danger" name="logout-submit">Logout</button>
-							</form>
+							<?php
+								if(isset($_SESSION['userid'])){
+									echo '<form class="navbar-form navbar-right" action="includes/logout.inc.php" method="post">
+											<button type="submit" class="btn btn-danger" name="logout-submit">Logout</button>
+										</form>';
+								}
+								else{
+									echo '<form class="navbar-form navbar-left" action="includes/login.inc.php" method="post">
+											<div class="form-group">
+												<input type="text" class="form-control" name="mailuid" placeholder="Username/Email">
+												<input type="password" class="form-control" name="pwd" placeholder="Password">
+											</div>
+											<button type="submit" class="btn btn-primary" name="login-submit">Log In</button>
+										</form>
+										<ul class="nav navbar-nav">
+											<li><a href="signup.php">Signup</a></li>
+										</ul>';
+								}
+							?>
+							
 						</div>
 					</div>
 				</div>
